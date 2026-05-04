@@ -1,0 +1,86 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalSlug: string;
+}
+
+const { title, description, canonicalSlug } = Astro.props;
+
+const navLinks = [
+  { label: 'Privacy', href: '/privacy' },
+  { label: 'Terms', href: '/terms' },
+  { label: 'Subscriptions', href: '/subscription-terms' },
+  { label: 'Support', href: '/support' },
+  { label: 'Delete Account', href: '/delete-account' },
+];
+
+const footerLinks = [
+  { label: 'Privacy Policy', href: '/privacy' },
+  { label: 'Terms of Use', href: '/terms' },
+  { label: 'Subscription Terms', href: '/subscription-terms' },
+  { label: 'Support', href: '/support' },
+  { label: 'Delete Account', href: '/delete-account' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {canonicalSlug !== undefined && (
+      <link
+        rel="canonical"
+        href={`https://recursio.app${canonicalSlug === '' ? '/' : `/${canonicalSlug}`}`}
+      />
+    )}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="/" class="site-logo" aria-label="Recursio home">Recursio</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              aria-current={currentPath === link.href || currentPath === link.href + '/' ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <nav class="footer-nav" aria-label="Footer navigation">
+          {footerLinks.map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
+        </nav>
+        <div class="footer-meta">
+          <span>&copy; 2026 Recursio</span>
+          <span>Contact: <a href="mailto:support@recursio.app">support@recursio.app</a></span>
+          <span>Last updated: May 2026</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

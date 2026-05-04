@@ -1,0 +1,54 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const cards = [
+  {
+    title: 'Privacy Policy',
+    href: '/privacy',
+    desc: 'Explains what data Recursio collects, how learning data is used, and how AI processing works.',
+  },
+  {
+    title: 'Terms of Use',
+    href: '/terms',
+    desc: 'The basic rules for using Recursio.',
+  },
+  {
+    title: 'Subscription Terms',
+    href: '/subscription-terms',
+    desc: 'Information about optional SMART and PRO subscriptions.',
+  },
+  {
+    title: 'Support',
+    href: '/support',
+    desc: 'How to contact Recursio support.',
+  },
+  {
+    title: 'Delete Account',
+    href: '/delete-account',
+    desc: 'How to request account and learning-data deletion.',
+  },
+];
+---
+
+<LegalLayout
+  title="Recursio Legal & Support"
+  description="Legal and support documents for the Recursio language-learning app."
+  canonicalSlug=""
+>
+  <h1>Recursio Legal &amp; Support</h1>
+  <p class="page-intro">
+    Recursio is a language-learning app for vocabulary, grammar, recall practice, and
+    AI-assisted learning feedback.
+  </p>
+
+  <div class="card-grid">
+    {cards.map((card) => (
+      <div class="card">
+        <a href={card.href} class="card-link" aria-label={card.title}>
+          <div class="card-title">{card.title}</div>
+          <div class="card-desc">{card.desc}</div>
+        </a>
+      </div>
+    ))}
+  </div>
+</LegalLayout>
