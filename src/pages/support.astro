@@ -1,0 +1,57 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (href: string) => base + href;
+---
+<LegalLayout
+  title="Support — Recursio"
+  description="Get help with Recursio: account access, sign-in, subscription restore, AI turn limits, vocabulary, progress, and account deletion."
+  path="/support"
+>
+  <article class="card">
+    <h1>Recursio Support</h1>
+    <p class="meta">Last updated: May 2026</p>
+
+    <p class="intro">If you need help with Recursio, contact support.</p>
+
+    <p>
+      Email: <a href="mailto:support@recursio.app">support@recursio.app</a>
+    </p>
+
+    <h2>What we can help with</h2>
+    <ul>
+      <li>Account access</li>
+      <li>Apple or Google sign-in</li>
+      <li>Subscription restore</li>
+      <li>AI turn limits</li>
+      <li>Vocabulary or progress issues</li>
+      <li>Account deletion</li>
+    </ul>
+
+    <h2>Subscription issues</h2>
+    <p>
+      Subscription billing is handled by the App Store or Google Play. If you need a refund, use the refund tools provided by Apple or Google.
+    </p>
+
+    <h2>Account deletion</h2>
+    <p>
+      Use the <a href={url('/delete-account')}>Delete Account</a> page or contact support.
+    </p>
+
+    <h2>Legal</h2>
+    <ul>
+      <li><a href={url('/privacy')}>Privacy Policy</a></li>
+      <li><a href={url('/terms')}>Terms of Use</a></li>
+      <li><a href={url('/subscription-terms')}>Subscription Terms</a></li>
+    </ul>
+
+    <h2>Tips before contacting support</h2>
+    <p>To help us answer faster, please include:</p>
+    <ul>
+      <li>your platform (iOS or Android) and app version</li>
+      <li>the email address used for Apple or Google sign-in, if available</li>
+      <li>a short description of the issue and what you expected to happen</li>
+    </ul>
+  </article>
+</LegalLayout>

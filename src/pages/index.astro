@@ -1,0 +1,56 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (href: string) => base + href;
+
+const cards = [
+  {
+    href: '/privacy',
+    title: 'Privacy Policy',
+    desc: 'Explains what data Recursio collects, how learning data is used, and how AI processing works.'
+  },
+  {
+    href: '/terms',
+    title: 'Terms of Use',
+    desc: 'The basic rules for using Recursio.'
+  },
+  {
+    href: '/subscription-terms',
+    title: 'Subscription Terms',
+    desc: 'Information about optional SMART and PRO subscriptions.'
+  },
+  {
+    href: '/support',
+    title: 'Support',
+    desc: 'How to contact Recursio support.'
+  },
+  {
+    href: '/delete-account',
+    title: 'Delete Account',
+    desc: 'How to request account and learning-data deletion.'
+  },
+];
+---
+<LegalLayout
+  title="Recursio Legal & Support"
+  description="Legal documents and support information for Recursio, a language-learning app for vocabulary, grammar, recall, and AI-assisted practice."
+  path="/"
+>
+  <article>
+    <h1>Recursio Legal &amp; Support</h1>
+    <p class="intro">
+      Recursio is a language-learning app for vocabulary, grammar, recall practice, and AI-assisted learning feedback.
+    </p>
+    <p class="meta">Last updated: May 2026</p>
+
+    <div class="link-grid">
+      {cards.map((c) => (
+        <a class="link-card" href={url(c.href)}>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+        </a>
+      ))}
+    </div>
+  </article>
+</LegalLayout>

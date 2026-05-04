@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Path of the current page, e.g. "/privacy". Used for canonical URL and active nav state. */
+  path: string;
+}
+
+const { title, description, path } = Astro.props;
+
+const SITE_URL = 'https://recursio.app';
+const canonical = SITE_URL + (path === '/' ? '/' : path);
+
+const navLinks = [
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/terms', label: 'Terms' },
+  { href: '/subscription-terms', label: 'Subscriptions' },
+  { href: '/support', label: 'Support' },
+  { href: '/delete-account', label: 'Delete Account' },
+];
+
+const footerLinks = [
+  { href: '/privacy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms of Use' },
+  { href: '/subscription-terms', label: 'Subscription Terms' },
+  { href: '/support', label: 'Support' },
+  { href: '/delete-account', label: 'Delete Account' },
+];
+
+// Resolve URLs through Astro so the configured `base` is honoured automatically.
+const url = (href: string) => {
+  if (href === '/') return import.meta.env.BASE_URL;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return base + href;
+};
+
+const isActive = (href: string) => {
+  if (href === '/') return path === '/';
+  return path === href;
+};
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#2F63F5" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index,follow" />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href={url('/')}>
+          <span class="brand-mark" aria-hidden="true"></span>
+          Recursio
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {navLinks.map((link) => (
+            <a
+              href={url(link.href)}
+              aria-current={isActive(link.href) ? 'page' : undefined}
+            >{link.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <nav class="footer-nav" aria-label="Footer">
+          {footerLinks.map((link) => (
+            <a href={url(link.href)}>{link.label}</a>
+          ))}
+        </nav>
+        <div class="footer-meta">
+          <span>© 2026 Recursio</span>
+          <span>Contact: <a href="mailto:support@recursio.app">support@recursio.app</a></span>
+          <span>Last updated: May 2026</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

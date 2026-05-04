@@ -1,0 +1,75 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const subject = encodeURIComponent('Delete my Recursio account');
+const body = encodeURIComponent(
+  'Hello Recursio support,\n\n' +
+  'I would like to request deletion of my Recursio account and account-linked learning data.\n\n' +
+  'Sign-in email (Apple or Google), if available: \n' +
+  'Platform (iOS or Android): \n' +
+  'I confirm I want my Recursio account deleted.\n\n' +
+  'Thank you.'
+);
+const mailto = `mailto:support@recursio.app?subject=${subject}&body=${body}`;
+---
+<LegalLayout
+  title="Delete Account — Recursio"
+  description="How to request deletion of your Recursio account and account-linked learning data."
+  path="/delete-account"
+>
+  <article class="card legal">
+    <h1>Delete Account</h1>
+    <p class="meta">Last updated: May 2026</p>
+
+    <h2>1. Delete Your Recursio Account</h2>
+    <p>Users can request deletion of their Recursio account and account-linked learning data.</p>
+
+    <h2>2. What May Be Deleted</h2>
+    <ul>
+      <li>account profile information</li>
+      <li>saved vocabulary</li>
+      <li>vocabulary spaces</li>
+      <li>practice history</li>
+      <li>grammar progress</li>
+      <li>Coach history</li>
+      <li>AI Writing attempts</li>
+      <li>app-linked learning progress</li>
+    </ul>
+
+    <h2>3. What May Be Retained</h2>
+    <p>
+      Some limited records may be retained if required for legal, security, fraud prevention, accounting, or app store subscription compliance reasons.
+    </p>
+
+    <h2>4. How to Request Deletion</h2>
+    <p>
+      Send an email to <a href="mailto:support@recursio.app">support@recursio.app</a> with the subject:
+    </p>
+    <p><code>Delete my Recursio account</code></p>
+    <p>Please include:</p>
+    <ul>
+      <li>the email address used for Apple or Google sign-in, if available</li>
+      <li>the platform used: iOS or Android</li>
+      <li>a short confirmation that you want your Recursio account deleted</li>
+    </ul>
+
+    <div class="accent-surface">
+      <p style="margin:0">
+        <a href={mailto}><strong>Open a pre-filled deletion request email →</strong></a>
+      </p>
+    </div>
+
+    <h2>5. Processing Time</h2>
+    <p>Deletion requests are usually processed within 30 days after verification.</p>
+
+    <h2>6. Subscription Note</h2>
+    <p>
+      Deleting an account does not automatically cancel an App Store or Google Play subscription. Users must cancel subscriptions through Apple or Google subscription settings.
+    </p>
+
+    <h2>7. Contact</h2>
+    <p>
+      For any questions, email <a href="mailto:support@recursio.app">support@recursio.app</a>.
+    </p>
+  </article>
+</LegalLayout>
